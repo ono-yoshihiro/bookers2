@@ -13,49 +13,71 @@
   <body>
 
     <header>
-      <nav class="navbar navbar-expand-lg navbar-dark bg-dark"> <!--クラス名は一旦モデルどおり-->
+      <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <div class="container">
-          <a class="navbar-brand" href="/">
-            <span>Bookers</span>
-          </a>
+          <a class="navbar-brand" href="/">Bookers</a> <!--モデルでspanタグを使用しているのは何故？-->
 
         <div class="collapse navbar-collapse" id="navbarNavDropdown">
-          <ul class="navbar-nav ml-auto">
 
+          <ul class="navbar-nav ml-auto">
             <li>
-              <%= link_to "users/#{user.id}" do%> <!--ログイン時はユーザー詳細ページへ、非ログイン時はルートへ？-->
-                <i class="fas fa-home">Home</i>
+              <%= link_to "/", class:"nav-link text-light" do %> <!--後で必ずユーザー詳細ページへのリンクにすること-->
+                <i class="fas fa-home"></i> Home
               <% end %>
             </li>
 
             <% if user_signed_in? %>
               <li>
-                <%= link_to "Users",  %>
+                <%= link_to "/users", class:"nav-link text-light" do %> <!--usersのindexへ-->
+                  <i class="fas fa-link"></i> Users
+                <% end %>
               </li>
 
               <li>
-                <%= link_to "Books",  %>
+                <%= link_to "/books", class:"nav-link text-light" do %> <!--booksのindexへ-->
+                  <i class="fas fa-book-open"></i> Books
+                <% end %>
               </li>
 
               <li>
-                <%= link_to "Log out",  %>
+                <%= link_to destroy_user_session_path, method: :delete, class:"nav-link text-light" do %>
+                  <i class="fas fa-sign-out-alt"></i> Log out
+                <% end %>
               </li>
 
             <% else %>
               <li>
-                <%= link_to "About",  %>
+                <%= link_to "/home/about", class:"nav-link text-light" do %>
+                  <i class="fas fa-link"></i> About
+                <% end %>
               </li>
 
               <li>
-                <%= link_to "Sign up",  %>
+                <%= link_to "/users/sign_up", class:"nav-link text-light" do %>
+                  <i class="fas fa-user-plus"></i> Sign up
+                <% end %>
               </li>
 
               <li>
-                <%= link_to "Log in",  %>
+                <%= link_to "/users/sign_in", class:"nav-link text-light" do %>
+                  <i class="fas fa-sign-in-alt"></i> Log in
+                <% end %>
               </li>
             <% end %>
     </header>
 
     <%= yield %>
+
+    <footer>
+      <div class="container mt-5">
+        <div class="row">
+          <div class="mx-auto">
+            <p>CopyRight Infratop.inc</p>
+          </div>
+        </div>
+      </div>
+    </footer>
+
   </body>
+
 </html>
