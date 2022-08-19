@@ -1,63 +1,62 @@
 <!DOCTYPE html>
 <html>
+
   <head>
     <title>Bookers2</title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-
     <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
   <body>
-
     <header>
       <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <div class="container">
-          <a class="navbar-brand" href="/">Bookers</a> <!--モデルでspanタグを使用しているのは何故？-->
-
+          <a class="navbar-brand" href="/">Bookers</a>
         <div class="collapse navbar-collapse" id="navbarNavDropdown">
-
           <ul class="navbar-nav ml-auto">
-            <li>
-              <%= link_to "/", class:"nav-link text-light" do %> <!--後で必ずユーザー詳細ページへのリンクにすること-->
-                <i class="fas fa-home"></i> Home
-              <% end %>
-            </li>
-
             <% if user_signed_in? %>
               <li>
-                <%= link_to "/users", class:"nav-link text-light" do %> <!--usersのindexへ-->
+                <%= link_to user_path(current_user.id), class:"nav-link text-light" do %>
+                  <i class="fas fa-home"></i> Home
+                <% end %>
+              </li>
+            <% else %>
+              <li>
+                <%= link_to "/", class:"nav-link text-light" do %>
+                  <i class="fas fa-home"></i> Home
+                <% end %>
+              </li>
+            <% end %>
+            <% if user_signed_in? %>
+              <li>
+                <%= link_to "/users", class:"nav-link text-light" do %>
                   <i class="fas fa-link"></i> Users
                 <% end %>
               </li>
-
               <li>
-                <%= link_to "/books", class:"nav-link text-light" do %> <!--booksのindexへ-->
+                <%= link_to "/books", class:"nav-link text-light" do %>
                   <i class="fas fa-book-open"></i> Books
                 <% end %>
               </li>
-
               <li>
                 <%= link_to destroy_user_session_path, method: :delete, class:"nav-link text-light" do %>
                   <i class="fas fa-sign-out-alt"></i> Log out
                 <% end %>
               </li>
-
             <% else %>
               <li>
                 <%= link_to "/home/about", class:"nav-link text-light" do %>
                   <i class="fas fa-link"></i> About
                 <% end %>
               </li>
-
               <li>
                 <%= link_to "/users/sign_up", class:"nav-link text-light" do %>
                   <i class="fas fa-user-plus"></i> Sign up
                 <% end %>
               </li>
-
               <li>
                 <%= link_to "/users/sign_in", class:"nav-link text-light" do %>
                   <i class="fas fa-sign-in-alt"></i> Log in
@@ -77,7 +76,5 @@
         </div>
       </div>
     </footer>
-
   </body>
-
 </html>
