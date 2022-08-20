@@ -6,6 +6,7 @@ before_action :correct_user, only: [:edit, :update]
     @books = Book.all
     @newbook = Book.new
     @book = @newbook
+    @edituser = current_user
   end
 
   def create
@@ -18,6 +19,7 @@ before_action :correct_user, only: [:edit, :update]
       @books = Book.all
       @newbook = Book.new(book_params)
       @user = current_user
+      @edituser = current_user
       render :index
     end
   end
@@ -26,6 +28,7 @@ before_action :correct_user, only: [:edit, :update]
     @book = Book.find(params[:id])
     @newbook = Book.new
     @user = @book.user
+    @edituser = @book.user
   end
 
   def edit

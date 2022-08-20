@@ -5,6 +5,7 @@ before_action :correct_user, only: [:edit, :update]
   def index
     @users = User.all
     @newbook = Book.new
+    @edituser = current_user
   end
 
   def show
@@ -12,6 +13,7 @@ before_action :correct_user, only: [:edit, :update]
     @book = @user.books.find_by(params[:id])
     @books = @user.books
     @newbook = Book.new
+    @edituser = User.find(params[:id])
   end
 
   def edit
