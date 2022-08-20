@@ -9,6 +9,7 @@ before_action :correct_user, only: [:edit, :update]
 
   def show
     @user = User.find(params[:id])
+    @book = @user.books.find_by(params[:id])
     @books = @user.books
     @newbook = Book.new
   end

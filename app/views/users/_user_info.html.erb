@@ -42,8 +42,7 @@
   </table>
 
   <div class="row">
-    <!--ログインユーザーの投稿の投稿詳細画面からでも編集に飛ぶようにしたい-->
-    <% if current_page?('/users') or current_page?('/books') or current_page?(user_path(current_user.id)) %>
+    <% if current_page?('/users') or current_page?('/books') or current_page?(user_path(current_user.id)) or book.user == current_user %>
       <%= link_to edit_user_path(current_user.id), class:"btn btn-outline-secondary btn-block" do%>
         <i class="fas fa-user-cog"></i>
       <% end %>
